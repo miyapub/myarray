@@ -22,4 +22,9 @@ var arr=[
         age:12
     },
 ];
-console.log(myarray.set(arr).groupByKeyName('class').get());
+console.dir(myarray.set(arr).groupByKeyName('class',function(obj){
+    return {
+        class:'haha',
+        list:obj
+    }
+}).get());

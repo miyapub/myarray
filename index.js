@@ -4,7 +4,7 @@ module.exports={
         _array=array;
         return this;
     },
-    groupByKeyName(keyName){
+    groupByKeyName(keyName,cb){
         var value_arr=[];
         var group_arr={};
         _array.map(function(obj){
@@ -14,7 +14,11 @@ module.exports={
                     value_arr.push(value);
                     group_arr[value]=[];
                 }
-                group_arr[value].push(obj);
+                if(Object.prototype.toString.call(cb) === '[object Function]'){
+                    group_arr[value].push(cb(obj));
+                }else{
+                    group_arr[value].push(obj);
+                }
             }
         });
         _array=[group_arr];
